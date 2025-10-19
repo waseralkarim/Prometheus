@@ -52,7 +52,7 @@ sudo systemctl restart prometheus
 Verify:
 
 ```bash
-curl http://<4th-server-ip>:9090/api/v1/status/config
+curl http://<remote-server-ip/domain>:9090/api/v1/status/config
 ```
 
 You should see `"remote_write"` section if configured on sender side.
@@ -65,14 +65,14 @@ If you’re using **kube-prometheus-stack** in K8s:
 
 ```bash
 helm upgrade monitoring prometheus-community/kube-prometheus-stack -n monitoring \
-  --set prometheus.prometheusSpec.remoteWrite[0].url="http://<4th-server-ip>:9090/api/v1/write"
+  --set prometheus.prometheusSpec.remoteWrite[0].url="http://<remote-server-ip/domain>:9090/api/v1/write"
 ```
 
 Example:
 
 ```bash
 helm upgrade monitoring prometheus-community/kube-prometheus-stack -n monitoring \
-  --set prometheus.prometheusSpec.remoteWrite[0].url="http://192.168.7.84:9090/api/v1/write"
+  --set prometheus.prometheusSpec.remoteWrite[0].url="http://192.168.XX.XX:9090/api/v1/write"
 ```
 
 ---
@@ -93,7 +93,7 @@ You should see the configured URL.
 Open the UI at:
 
 ```
-http://<4th-server-ip>:9090/targets
+http://<remote-server-ip/domain>:9090/targets
 ```
 
 You should see `remote_write` endpoint receiving data under **Service Discovery** or by checking incoming time series via the "graph" tab.
@@ -108,7 +108,7 @@ prometheus:
     externalLabels:
       cluster: cluster-a #rename this based on the needs
     remoteWrite:
-      - url: "http://192.168.7.84:9090/api/v1/write"
+      - url: "http://192.168.XX.XX:9090/api/v1/write"
 ```
 
 Then upgrade/install Prometheus using this file:
@@ -148,7 +148,7 @@ kubectl logs -n monitoring prometheus-monitoring-kube-prometheus-prometheus-0
 Network test:
 
 ```bash
-curl -v http://<4th-server-ip>:9090/api/v1/write
+curl -v http://<remote-server-ip/domain>:9090/api/v1/write
 ```
 
 Config file check:
