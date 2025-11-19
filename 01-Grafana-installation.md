@@ -50,7 +50,7 @@ Complete the following steps to install Grafana from the APT repository:
     sudo apt-get install grafana-enterprise
     ```
 
-   # **Start the Grafana server**
+# **Start the Grafana server**
 
 ## **Linux**
 
@@ -77,10 +77,6 @@ Complete the following steps to start the Grafana server using systemd and verif
 ### **Configure the Grafana server to start at boot using systemd**
 
 To configure the Grafana server to start at boot, run the following command:
-
-Bash
-
-Copy
 
 ```jsx
 sudo systemctl enable grafana-server.service
