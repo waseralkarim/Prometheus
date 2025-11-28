@@ -67,17 +67,19 @@ Group=prometheus
 
 Type=simple
 
-ExecStart=/opt/prometheus-3.7.2.linux-amd64/prometheus \\
+ExecStart=/opt/prometheus-3.7.2.linux-amd64/prometheus \
 
---config.file=/etc/prometheus/prometheus.yml \\
+--config.file=/etc/prometheus/prometheus.yml \
 
---storage.tsdb.path=/var/lib/prometheus \\
+--storage.tsdb.path=/var/lib/prometheus \
 
---web.console.templates=/etc/prometheus/consoles \\
+--web.console.templates=/etc/prometheus/consoles \
 
---web.console.libraries=/etc/prometheus/console_libraries \\
+--web.console.libraries=/etc/prometheus/console_libraries \
 
---web.listen-address=0.0.0.0:9090
+--web.listen-address=0.0.0.0:9090 \
+--web.enable-remote-write-receiver \
+--storage.tsdb.retention.size=25GB
 
 [Install]
 
